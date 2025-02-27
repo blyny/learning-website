@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <title>Content Form Project</title>
+    </head>
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .bg-img {
+            background-image: url("images/weight-conversion-tool.png");
+            min-height: 700px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 300px, 300px;
+            position: relative;
+            margin-top: 0%;
+        }
+
+        .text {
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            margin-top: 5%;
+
+        }
+
+        button {
+            width: 10%;
+            padding: 5px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+
+    </style>
+    <body>
+        <div class="bg-img">
+            <div class="text">
+                Convert Kilograms to Pounds! <br>
+                <label>Enter Weight in Kilograms (kg):</label>
+                <input type="number" id="kg" placeholder="Enter kilograms...">
+                <button onclick="convertKgToLb()">Convert</button> <br>
+                Pounds (lb) = <span id="convertKgToLb"></span> 
+        
+                <br><br><br>
+        
+                Convert Pounds to Kilograms! <br>
+                <label>Enter Weight in Pounds (lb):</label>
+                <input type="number" id="lb" placeholder="Enter pounds...">
+                <button onclick="convertLbToKg()">Convert</button> <br>
+                Kilograms (kg) = <span id="convertLbtoKg"></span>
+            </div>
+        </div>
+
+
+
+    </body>
+    <script src='script.js'></script>
+</html>
