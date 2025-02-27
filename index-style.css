@@ -101,14 +101,22 @@ body {
     color: #000000;
 }
 
-.small-gradient {
+.small-gradient-current-works {
     background: linear-gradient(45deg, #29df69, #abafff); /* Gradient background */
     background-size: 100% 15px; /* Width: 100%, Height: 3px */
     background-repeat: no-repeat; /* Prevent the gradient from repeating */
-    background-position: 100% 70%; /* Position the gradient slightly below the text */
+    background-position: 100% 80%; /* Position the gradient slightly below the text */
     padding-bottom: 3px; /* Add space between the text and the gradient */
     border-radius: 10px;
-    
+}
+
+.small-gradient-school-projects {
+    background: linear-gradient(45deg, #abafff, #29df69); /* Gradient background */
+    background-size: 100% 15px; /* Width: 100%, Height: 3px */
+    background-repeat: no-repeat; /* Prevent the gradient from repeating */
+    background-position: 100% 80%; /* Position the gradient slightly below the text */
+    padding-bottom: 3px; /* Add space between the text and the gradient */
+    border-radius: 10px;
 }
 
 footer {
