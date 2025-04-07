@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Canvas</title>
+    <style>
+        .control-group {
+            padding: 15px;
+    
+        }
+        canvas {
+            border: 1px solid #000;
+            background-color: #f0f0f0;
+        }
+        h2 {
+            margin-top: 0;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Interactive Canvas Scene</h1>
+    
+    <div class="controls">
+        <div class="control-group">
+            <h2>Background Selection</h2>
+            <label><input type="radio" name="background" value="sky" checked> Sky</label><br>
+            <label><input type="radio" name="background" value="grass"> Grass</label><br>
+            <label><input type="radio" name="background" value="water"> Water</label>
+        </div>
+        
+        <div class="control-group">
+            <h2>Character Position</h2>
+            <label>X Position: <input type="range" id="xPos" min="50" max="350" value="200"></label><br>
+            <label>Y Position: <input type="range" id="yPos" min="50" max="350" value="200"></label>
+        </div>
+        
+        <div class="control-group">
+            <h2>Toggle Items</h2>
+            <label><input type="checkbox" id="item1" checked> Show Item 1</label><br>
+            <label><input type="checkbox" id="item2" checked> Show Item 2</label><br>
+            <label><input type="checkbox" id="item3" checked> Show Item 3</label>
+        </div>
+        
+        <div class="control-group">
+            <h2>Sound Effects</h2>
+            <button id="sound1">Play Sound 1</button><br>
+            <button id="sound2">Play Sound 2</button><br>
+            <button id="sound3">Play Sound 3</button>
+        </div>
+    </div>
+    
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+    
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        const backgroundRadios = document.querySelectorAll('input[name="background"]');
+        const xPosSlider = document.getElementById('xPos');
+        const yPosSlider = document.getElementById('yPos');
+        const item1Checkbox = document.getElementById('item1');
+        const item2Checkbox = document.getElementById('item2');
+        const item3Checkbox = document.getElementById('item3');
+        const sound1Button = document.getElementById('sound1');
+        const sound2Button = document.getElementById('sound2');
+        const sound3Button = document.getElementById('sound3');
+        
+        const sound1 = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-coin-216.mp3');
+        const sound2 = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3');
+        const sound3 = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-game-click-1114.mp3');
+        
+        let background = 'sky';
+        let characterX = 200;
+        let characterY = 200;
+        let showItem1 = true;
+        let showItem2 = true;
+        let showItem3 = true;
+        
+        backgroundRadios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                background = e.target.value;
+                drawScene();
+            });
+        });
+        
+        xPosSlider.addEventListener('input', (e) => {
+            characterX = parseInt(e.target.value);
+            drawScene();
+        });
+        
+        yPosSlider.addEventListener('input', (e) => {
+            characterY = parseInt(e.target.value);
+            drawScene();
+        });
+        
+        item1Checkbox.addEventListener('change', (e) => {
+            showItem1 = e.target.checked;
+            drawScene();
+        });
+        
+        item2Checkbox.addEventListener('change', (e) => {
+            showItem2 = e.target.checked;
+            drawScene();
+        });
+        
+        item3Checkbox.addEventListener('change', (e) => {
+            showItem3 = e.target.checked;
+            drawScene();
+        });
+        
+        sound1Button.addEventListener('click', () => sound1.play());
+        sound2Button.addEventListener('click', () => sound2.play());
+        sound3Button.addEventListener('click', () => sound3.play());
+        
+        function drawScene() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            switch(background) {
+                case 'sky':
+                    drawSkyBackground();
+                    break;
+                case 'grass':
+                    drawGrassBackground();
+                    break;
+                case 'water':
+                    drawWaterBackground();
+                    break;
+            }
+
+            if (showItem1) drawCircle();
+            if (showItem2) drawTriangle();
+            if (showItem3) drawSquare();
+
+            drawCharacter(characterX, characterY);
+        }
+
+        function drawCharacter(x, y) {
+            // Head
+            ctx.fillStyle = 'green';
+            ctx.beginPath();
+            ctx.arc(x, y - 30, 20, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Eyes
+            ctx.fillStyle = 'white';
+            ctx.beginPath();
+            ctx.arc(x - 8, y - 35, 2, 0, Math.PI * 2);
+            ctx.arc(x + 8, y - 35, 2, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.fillStyle = 'black';
+            ctx.beginPath();
+            ctx.arc(x - 8, y - 35, 2, 0, Math.PI * 2);
+            ctx.arc(x + 8, y - 35, 2, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Smile
+            ctx.strokeStyle = 'black';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(x, y - 30, 5, 0.1 * Math.PI, 0.9 * Math.PI);
+            ctx.stroke();
+
+        }
+        
+        function drawSkyBackground() {
+            const skyGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            skyGradient.addColorStop(0, '#87CEEB');
+            skyGradient.addColorStop(1, '#E0F7FF');
+            ctx.fillStyle = skyGradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        }
+        
+        function drawGrassBackground() {
+            const skyGradient = ctx.createLinearGradient(0, 0, 0, canvas.height/2);
+            skyGradient.addColorStop(0, '#87CEEB');
+            skyGradient.addColorStop(1, '#A7D8F0');
+            ctx.fillStyle = skyGradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height/2);
+
+            const grassGradient = ctx.createLinearGradient(0, canvas.height/2, 0, canvas.height);
+            grassGradient.addColorStop(0, '#7CFC00');
+            grassGradient.addColorStop(1, '#228B22');
+            ctx.fillStyle = grassGradient;
+            ctx.fillRect(0, canvas.height/2, canvas.width, canvas.height/2);
+        }
+        
+        function drawWaterBackground() {
+            const skyGradient = ctx.createLinearGradient(0, 0, 0, canvas.height/2);
+            skyGradient.addColorStop(0, '#1E90FF');
+            skyGradient.addColorStop(1, '#00BFFF');
+            ctx.fillStyle = skyGradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height/2);
+
+            const waterGradient = ctx.createLinearGradient(0, canvas.height/2, 0, canvas.height);
+            waterGradient.addColorStop(0, '#1E90FF');
+            waterGradient.addColorStop(1, '#00008B');
+            ctx.fillStyle = waterGradient;
+            ctx.fillRect(0, canvas.height/2, canvas.width, canvas.height/2);
+        }
+        
+        
+        function drawCircle() {
+            ctx.fillStyle = 'gold';
+            ctx.beginPath();
+            ctx.arc(100, 100, 10, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+                
+        }
+        
+        function drawTriangle() {
+            ctx.fillStyle = 'red';
+            ctx.beginPath();
+            ctx.moveTo(300, 75);  
+            ctx.lineTo(275, 125); 
+            ctx.lineTo(325, 125); 
+            ctx.closePath();      
+            ctx.fill();
+            ctx.stroke();
+            
+        }
+        
+        function drawSquare() {
+            ctx.fillStyle = 'purple';
+            ctx.beginPath();
+            ctx.rect(150, 300, 50, 50); 
+            ctx.fill();
+            ctx.stroke();
+        }
+        
+        drawScene();
+    </script>
+</body>
+</html>
