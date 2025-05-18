@@ -1,0 +1,28 @@
+{
+    "topics": [
+      {
+        "id": 1,
+        "title": "Dolphins",
+        "description": "Dolphins are highly intelligent marine mammals known for their playful behavior.",
+        "image": "images/dolphin.jpg",
+        "audio": "audio/dolphin.mp3",
+        "facts": [
+          "Dolphins can recognize themselves in mirrors.",
+          "They use echolocation to navigate and hunt.",
+          "Some dolphins can swim up to 20 mph."
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Great White Shark",
+        "description": "The great white shark is one of the ocean's most formidable predators.",
+        "image": "images/greatWhite.jpg",
+        "audio": "audio/shark.mp3",
+        "facts": [
+          "Great whites can detect one drop of blood in 25 gallons of water.",
+          "They can grow up to 20 feet long.",
+          "Their teeth are constantly replaced throughout their lives."
+        ]
+      }
+    ]
+  }

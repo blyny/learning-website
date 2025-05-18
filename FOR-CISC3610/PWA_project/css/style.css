@@ -1,0 +1,367 @@
+/* Global Styles */
+:root {
+  --primary-color: #1a6fc9;
+  --secondary-color: #0d4b8a;
+  --accent-color: #ff9f1c;
+  --light-color: #f8f9fa;
+  --dark-color: #212529;
+  --success-color: #28a745;
+  --text-color: #333;
+  --text-light: #f8f9fa;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--light-color);
+  min-height: 100vh;
+}
+
+/* Header Styles */
+header {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  padding: 1rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Install Button Styles */
+.install-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--accent-color);
+    color: var(--dark-color);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 1000;
+    transition: all 0.3s ease;
+
+    /* Hidden by default */
+}
+
+.install-button:hover {
+    background-color: #ffb347;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.install-button:active {
+    transform: translateY(0);
+}
+
+.install-icon {
+    font-size: 1.2em;
+}
+
+/* For installed PWAs */
+@media (display-mode: standalone) {
+    .install-button {
+        display: none !important;
+    } }
+/* Main App Container */
+.learning-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* Canvas Styles */
+#learningCanvas {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  aspect-ratio: 16/10;
+  border: 2px solid var(--secondary-color);
+}
+
+/* Controls Section */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 800px;
+}
+
+.nav-btn, .sound-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: var(--border-radius);
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow);
+}
+
+.nav-btn {
+  background-color: var(--primary-color);
+  color: white;
+  flex-grow: 1;
+  max-width: 200px;
+}
+
+.nav-btn:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+.nav-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.sound-btn {
+  background-color: var(--accent-color);
+  color: var(--dark-color);
+  flex-grow: 1;
+  max-width: 200px;
+}
+
+.sound-btn:hover {
+  background-color: #ffb347;
+  transform: translateY(-2px);
+}
+
+/* Topic Info Section */
+.topic-info {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+}
+
+.topic-info h2 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.topic-info p {
+  color: var(--text-color);
+  font-size: 1.1rem;
+}
+
+/* Promo Page Styles */
+.promo-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.promo-container h1 {
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 2.2rem;
+}
+
+.promo-container p {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: var(--secondary-color);
+}
+
+.screenshots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.screenshots img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  border: 1px solid #ddd;
+}
+
+.features {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  margin: 2rem 0;
+  box-shadow: var(--shadow);
+}
+
+.features h2 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.features ul {
+  list-style-type: none;
+}
+
+.features li {
+  padding: 0.5rem 0;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.features li::before {
+  content: "→";
+  color: var(--accent-color);
+  position: absolute;
+  left: 0;
+}
+
+.install-instructions {
+  background-color: #f0f8ff;
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  margin: 2rem 0;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--primary-color);
+}
+
+.install-instructions h2 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.install-instructions ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.install-instructions li {
+  margin-bottom: 0.5rem;
+}
+
+.cta-button {
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow);
+}
+
+.cta-button:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .learning-container {
+    margin: 1rem auto;
+    padding: 0 0.5rem;
+  }
+  
+  .controls {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .nav-btn, .sound-btn {
+    width: 100%;
+    max-width: none;
+  }
+  
+  .promo-container {
+    padding: 1rem;
+  }
+  
+  .screenshots {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.3rem;
+  }
+  
+  .topic-info h2 {
+    font-size: 1.3rem;
+  }
+  
+  .topic-info p {
+    font-size: 1rem;
+  }
+  
+  .promo-container h1 {
+    font-size: 1.8rem;
+  }
+  
+  .promo-container p {
+    font-size: 1rem;
+  }
+}
+
+/* PWA-specific styles */
+@media (display-mode: standalone) {
+  header {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  body {
+    background-color: white;
+  }
+  
+  .btn-install {
+    display: none !important;
+  }
+}
+
+/* Animation for interactive elements */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.nav-btn:active, .sound-btn:active, .cta-button:active {
+  animation: pulse 0.3s ease;
+}

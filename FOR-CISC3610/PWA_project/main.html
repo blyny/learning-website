@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Explorer - Marine Life</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Bootstrap optional -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body>
+    <header>
+        <h1>Learning Explorer</h1>
+    </header>
+
+    <main>
+        <div class="learning-container">
+            <canvas id="learningCanvas" width="800" height="500"></canvas>
+
+            <div class="controls">
+                <button id="prevBtn" class="nav-btn">Previous</button>
+                <button id="nextBtn" class="nav-btn">Next</button>
+                <button id="soundBtn" class="sound-btn">Play Sound</button>
+            </div>
+
+            <div class="topic-info">
+                <h2 id="topicTitle">Marine Life</h2>
+                <p id="topicDescription">Explore fascinating creatures of the deep sea.</p>
+            </div>
+            <button id="installBtn" class="install-button">
+                <span class="install-icon">↓</span> Install App     
+            </button>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+    <script src="js/canvas.js"></script>
+    <script>
+        // Register service worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(registration => console.log('SW registered'))
+                    .catch(err => console.log('SW registration failed'));
+            });
+        }
+    </script>
+</body>
+
+</html>
